@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <h1 class="text-center mt-4">Usuarios</h1>
+    <table class="table">
+      <thead class="text-center">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Ciudad</th>
+          <th scope="col">Empresa</th>
+          <th scope="col">Email</th>
+          <th scope="col">Avatar</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users | paginate: { itemsPerPage: 5, currentPage: pages }">
+          <th scope="row">{{user.id}}</th>
+          <td>{{user.name}}</td>
+          <td>{{user.address.city}}</td>
+          <td>{{user.company.name}}</td>
+          <td>{{user.email}}</td>
+          <td><img src="{{user.avatar || '../../../assets/profile.png'}}"></td>
+        </tr>
+      </tbody>
+    </table>
+    <h5 style="text-align: start; margin-top: 10px;" *ngIf="users.length == 0">No hay usuarios</h5>
+    <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="pages = $event"></pagination-controls>
+  </div>
+</div>
